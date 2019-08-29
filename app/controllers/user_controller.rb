@@ -10,6 +10,11 @@ class UserController < ApplicationController
 		end
 	end
 
+	# def show
+	# 	@user = User.find(params[:id])
+	# 	render :show
+	# end
+
 	def profile
 		# byebug
 		render json: current_user 
