@@ -1,12 +1,8 @@
 class PhotoController < ApplicationController
 
-	def create
-		photo = Photo.create(photo_params)
-	end
-
-	def show
-		@photo = Photo.find(params[:id])
-		render :show
+	def index
+		@photos = Photo.all
+		render :index
 	end
 
 	
