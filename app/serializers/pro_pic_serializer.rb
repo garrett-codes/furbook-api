@@ -1,4 +1,4 @@
 class ProPicSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :picture
   has_one :user
 end
