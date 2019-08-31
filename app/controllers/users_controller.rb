@@ -16,7 +16,6 @@ class UsersController < ApplicationController
 	# end
 
 	def profile
-		# byebug
 		render json: current_user 
 	end
 

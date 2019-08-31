@@ -1,10 +1,11 @@
 class ApplicationController < ActionController::API
 	
 	def secret
-		Rails.application.credentials.my_app_secret
+		ENV["my_secret_app_key"]
 	end
 
 	def encode_token(payload)
+		# debugger
 		JWT.encode payload, secret, 'HS256'
 	end
 
