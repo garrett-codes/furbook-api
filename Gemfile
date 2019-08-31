@@ -44,7 +44,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-gem "google-cloud-storage", "~> 1.8", require: false
+gem "google-cloud-storage", "~> 1.8"
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
