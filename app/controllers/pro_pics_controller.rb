@@ -6,7 +6,7 @@ class ProPicsController < ApplicationController
 
 	def create
 		debugger
-		pro_pic = ProPic.new(photo_params)
+		pro_pic = ProPic.new(pro_pic_params)
 		if pro_pic.save
 			render json: {message: "You did it!"}
 		else
@@ -17,7 +17,7 @@ class ProPicsController < ApplicationController
 	
 	private 
 
-	def photo_params
+	def pro_pic_params
     params.require(:pro_pic).permit(:user_id, :picture)
 	end
 end
