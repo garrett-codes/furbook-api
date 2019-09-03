@@ -2,6 +2,13 @@ class PostsController < ApplicationController
 	def create
 		post = Post.create(post_params)
 		# byebug
+		if post.valid?
+      # Return that post
+      render json: PostSerializer.new(post)
+    else
+      # Give the user error messages
+      render json: { errors: @post.errors.full_messages }, status: :not_acceptable
+    end
 	end
 
 	# def show
@@ -11,7 +18,7 @@ class PostsController < ApplicationController
 
 	private 
 
-	def user_params
+	def post_params
 		params.permit(:user_id, :content)
 	end
 end
