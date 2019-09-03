@@ -5,7 +5,6 @@ class PhotoSerializer < ActiveModel::Serializer
 
   def picture
     return unless object.picture.attached?
-
     object.picture.blob.attributes
           .slice('filename', 'byte_size')
           .merge(url: picture_url)

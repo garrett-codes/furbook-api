@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+	before_action :authorized
 	
 	def secret
 		ENV["my_secret_app_key"]
@@ -18,10 +19,22 @@ class ApplicationController < ActionController::API
 	end
 
 	def decoded_token
-		JWT.decode token, secret, true, { algorithm: 'HS256' }
+		begin
+			JWT.decode token, secret, true, { algorithm: 'HS256' }
+		rescue JWT::DecodeError
+			nil
+		end
 	end
 
 	def current_user
-		User.find(decoded_token[0]["user_id"])
+		User.find(decoded_token[0]["user_id"]) if decoded_token
 	end
+
+	def logged_in?
+    !!current_user
+  end
+
+  def authorized
+    render json: { message: "Please log in" }, status: :unauthorized unless logged_in?
+  end
 end
