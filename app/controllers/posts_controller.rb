@@ -11,12 +11,17 @@ class PostsController < ApplicationController
     end
 	end
 
+	def index
+		posts = Post.all
+		render json: posts
+	end
+
 	# def show
 	# 	@post = User.find(params[:id])
 	# 	render :show
 	# end
 
-	private 
+	private
 
 	def post_params
 		params.permit(:user_id, :content)
