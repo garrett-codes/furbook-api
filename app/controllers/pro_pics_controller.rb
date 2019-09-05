@@ -1,4 +1,5 @@
 class ProPicsController < ApplicationController
+	skip_before_action :authorized
 	def index
 		@pro_pics = ProPic.all
 		render :index
