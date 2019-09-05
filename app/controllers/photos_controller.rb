@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-
+skip_before_action :authorized
 	def index
 		@photos = Photo.all
 		render :index
