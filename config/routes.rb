@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :comments
   resources :posts
-  resources :photos
-  resources :pro_pics
+  resources :photos, only: [:create, :index]
+  resources :pro_pics, only: [:create, :index]
   resources :users
   # resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
