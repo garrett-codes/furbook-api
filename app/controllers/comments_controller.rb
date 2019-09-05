@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
 	end
 
 	def index
-		comments = Comment.all.reverse
+		comments = Comment.all
 		render json: comments
 	end
 
