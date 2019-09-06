@@ -14,6 +14,7 @@ class ProPicSerializer < ActiveModel::Serializer
 
   def picture_url
     # debugger
+    # debugger
     url_for(object.picture)
   end
 end
