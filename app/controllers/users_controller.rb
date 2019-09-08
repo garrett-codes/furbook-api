@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 	def show
 	  user_id = params[:id]
 	  user = User.find(user_id)
-	  render json: UserSerializer.new(user)
+	  render json: user
   end
 
 	# def show
