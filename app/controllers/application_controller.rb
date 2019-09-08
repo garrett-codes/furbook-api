@@ -1,22 +1,21 @@
 class ApplicationController < ActionController::API
 	before_action :authorized
 	
+	def encode_token(user)
+    JWT.encode(user_payload(user), secret, "HS256")
+  end
+
+  def user_payload(user)
+    { user_id: user.id }
+  end
+
 	def secret
 		ENV["my_secret_app_key"]
 	end
 
-	def encode_token(payload)
-		# debugger
-		JWT.encode payload, secret, 'HS256'
-	end
-
-	def user_payload(user)
-		{ user_id: user.id }
-	end
-
-	def token
-		request.headers["Authorization"]
-	end
+	def token 
+    request.headers["Authorization"]
+  end
 
 	def decoded_token
 		begin
@@ -27,7 +26,8 @@ class ApplicationController < ActionController::API
 	end
 
 	def current_user
-		User.find(decoded_token[0]["user_id"]) if decoded_token
+		
+		User.find(decoded_token[0]["user_id"])
 	end
 
 	def logged_in?
