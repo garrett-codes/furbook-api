@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
-
+skip_before_action :authorized, only: :create
 	def create
 		user = User.create(user_params)
 		# byebug
 		if user.valid?
-			render json: {token: encode_token(user_payload(user))}
+			render json: {token: encode_token(user)}
 		else
 			render json: { errors: user.errors.full_messages }
 		end
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 	# end
 
 	def profile
-		render json: current_user 
+		render json: current_user
 	end
 
 	private 
