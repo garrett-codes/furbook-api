@@ -4,4 +4,5 @@ class UserSerializer < ActiveModel::Serializer
   has_many :comments, through: :posts
   has_one :pro_pic
   has_many :photos
+
 end

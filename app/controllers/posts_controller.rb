@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 		# byebug
 		if post.valid?
       # Return that post
-      render json: PostSerializer.new(post)
+      render json: post
     else
       # Give the user error messages
       render json: { errors: @post.errors.full_messages }, status: :not_acceptable
@@ -15,6 +15,12 @@ class PostsController < ApplicationController
 		posts = Post.all.reverse
 		render json: posts
 	end
+
+	def show
+	  post_id = params[:id]
+	  post = Post.find(post_id)
+	  render json: post
+  end
 
 	# def show
 	# 	@post = User.find(params[:id])
