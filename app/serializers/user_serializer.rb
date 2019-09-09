@@ -25,6 +25,6 @@ class UserSerializer < ActiveModel::Serializer
 
   def pending_friend_requests
   	friendships = Friendship.all.select{|friendship| object.id == friendship.friend_user_id && friendship.pending} 
-  	friendships.map{|friendship| User.find(friendship.user_id)}
+  	friendships.map{|friendship| {user: User.find(friendship.user_id), id: friendship.id}}
   end
 end
