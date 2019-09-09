@@ -6,7 +6,7 @@ class User < ApplicationRecord
 	has_many :comments, dependent: :destroy
 	has_and_belongs_to_many :friendships,
 		class_name: "User",
-		join_table: :freindships,
+		join_table: :friendships,
 		foreign_key: :user_id,
 		association_foreign_key: :friend_user_id
 end
