@@ -2,6 +2,7 @@ class AuthController < ApplicationController
 	skip_before_action :authorized, only: :login
 	
 	def login
+		# debugger
 		user = User.find_by(username: params[:username])
 				# byebug
 
