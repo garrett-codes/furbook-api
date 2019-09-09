@@ -16,10 +16,11 @@ class CommentsController < ApplicationController
 		render json: comments
 	end
 
-	# def show
-	# 	@post = User.find(params[:id])
-	# 	render :show
-	# end
+	def show
+	  comment_id = params[:id]
+	  comment = Comment.find(comment_id)
+	  render json: comment
+  end
 
 	private
 
