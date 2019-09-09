@@ -6,7 +6,8 @@ class ProPicsController < ApplicationController
 	end
 
 	def create
-		debugger
+		# debugger
+		
 		pro_pic = ProPic.new(pro_pic_params)
 		if pro_pic.save
 			render json: {message: "You did it!"}
