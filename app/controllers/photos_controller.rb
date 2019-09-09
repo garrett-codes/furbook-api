@@ -6,7 +6,7 @@ skip_before_action :authorized
 	end
 
 	def create
-		debugger
+		# debugger
 		photo = Photo.new(photo_params)
 		if photo.save
 			render json: {message: "You did it!"}
