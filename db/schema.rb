@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2019_09_09_141316) do
     t.integer "friend_user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "pending"
+    t.boolean "pending", default: true
     t.index ["friend_user_id", "user_id"], name: "index_friendships_on_friend_user_id_and_user_id", unique: true
     t.index ["user_id", "friend_user_id"], name: "index_friendships_on_user_id_and_friend_user_id", unique: true
   end
