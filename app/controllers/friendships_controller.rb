@@ -20,6 +20,12 @@ class FriendshipsController < ApplicationController
 	  render json: friendship
   end
 
+  def update
+  	riendship_id = params[:id]
+	  friendship = Friendship.find(friendship_id)
+	  friendship.update(friendship_params)
+  end
+
 	# def show
 	# 	@user = User.find(params[:id])
 	# 	render :show
@@ -28,6 +34,6 @@ class FriendshipsController < ApplicationController
 	private 
 
 	def friendship_params
-		params.permit(:user_id, :, :friend_user_id, :pending)
+		params.permit(:user_id, :friend_user_id, :pending)
 	end
 end
