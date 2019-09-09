@@ -21,7 +21,7 @@ class FriendshipsController < ApplicationController
   end
 
   def update
-  	riendship_id = params[:id]
+  	friendship_id = params[:id]
 	  friendship = Friendship.find(friendship_id)
 	  friendship.update(friendship_params)
   end
