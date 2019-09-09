@@ -26,6 +26,12 @@ class FriendshipsController < ApplicationController
 	  friendship.update(friendship_params)
   end
 
+  def destroy
+  	friendship_id = params[:id]
+  	friendship = Friendship.find(friendship_id)
+  	friendship.destroy
+  end
+
 	# def show
 	# 	@user = User.find(params[:id])
 	# 	render :show
