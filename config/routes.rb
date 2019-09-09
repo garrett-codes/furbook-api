@@ -1,6 +1,7 @@
 Rails.application.routes.default_url_options[:host] = "http://localhost:3000"
 
 Rails.application.routes.draw do
+  resources :friendships
   resources :comments
   resources :posts
   resources :photos, only: [:create, :index]
