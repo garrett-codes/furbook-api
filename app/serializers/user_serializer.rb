@@ -11,11 +11,11 @@ class UserSerializer < ActiveModel::Serializer
   	friends = []
   	friendships.each do |friendship| 
   		if (friendship.user_id == object.id && !friendship.pending) 
-  			friend = {user: User.find(friendship.friend_user_id)}
+  			friend = {user: User.find(friendship.friend_user_id), id: friendship.id}
   			# friend[:pending] = friendship.pending
   			friends << friend
   		elsif (friendship.friend_user_id == object.id && !friendship.pending)
-  			friend = {user: User.find(friendship.user_id)}
+  			friend = {user: User.find(friendship.user_id), id: friendship.id}
   			# friend[:pending] = friendship.pending
   			friends << friend
   		end
