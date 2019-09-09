@@ -15,6 +15,12 @@ skip_before_action :authorized
 		end
 	end
 
+	def show
+	  photo_id = params[:id]
+	  photo = Photo.find(photo_id)
+	  render json: photo
+  end
+
 	
 	private 
 
