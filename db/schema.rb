@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_10_142339) do
+ActiveRecord::Schema.define(version: 2019_09_10_143700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,16 @@ ActiveRecord::Schema.define(version: 2019_09_10_142339) do
     t.index ["friendship_id"], name: "index_message_containers_on_friendship_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "message_container_id"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_container_id"], name: "index_messages_on_message_container_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "photos", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -107,6 +117,8 @@ ActiveRecord::Schema.define(version: 2019_09_10_142339) do
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "message_containers", "friendships"
+  add_foreign_key "messages", "message_containers"
+  add_foreign_key "messages", "users"
   add_foreign_key "photos", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "pro_pics", "users"
