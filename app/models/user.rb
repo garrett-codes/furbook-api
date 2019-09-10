@@ -4,6 +4,7 @@ class User < ApplicationRecord
 	has_many :pro_pic, dependent: :destroy
 	has_many :posts, dependent: :destroy
 	has_many :comments, dependent: :destroy
+  has_many :messages, dependent: :destroy
 	has_and_belongs_to_many :friendships,
 		class_name: "User",
 		join_table: :friendships,
