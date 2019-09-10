@@ -32,7 +32,7 @@ class UserSerializer < ActiveModel::Serializer
     messages_container = []
     object.friends.each do |friend_info| 
       messages = Friendship.find(friend_info[:id]).messages
-      messages_info = {messages: messages , friend: friend_info[:user]}
+      messages_info = {messages: messages.reverse , friend: friend_info[:user], friendship_id: friend_info[:id]}
       messages_container << messages_info
     end
     messages_container
