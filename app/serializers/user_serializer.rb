@@ -27,4 +27,15 @@ class UserSerializer < ActiveModel::Serializer
   	friendships = Friendship.all.select{|friendship| object.id == friendship.friend_user_id && friendship.pending} 
   	friendships.map{|friendship| {user: User.find(friendship.user_id), id: friendship.id}}
   end
+
+  # def messages_info
+  #   messages_container = []
+  #   object.friends.each do |friend_info| 
+  #     messages = Friendship.find(friend_info[:id]).messages
+  #     messages_info = {messages: messages , friend: friend_info[:user]}
+  #     messages_container << messages_info
+  #     byebug
+  #   end
+  # end
+  # return messages_container
 end
