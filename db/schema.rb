@@ -56,20 +56,13 @@ ActiveRecord::Schema.define(version: 2019_09_10_143700) do
     t.index ["user_id", "friend_user_id"], name: "index_friendships_on_user_id_and_friend_user_id", unique: true
   end
 
-  create_table "message_containers", force: :cascade do |t|
-    t.bigint "friendship_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["friendship_id"], name: "index_message_containers_on_friendship_id"
-  end
-
   create_table "messages", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "message_container_id"
+    t.bigint "friendship_id"
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["message_container_id"], name: "index_messages_on_message_container_id"
+    t.index ["friendship_id"], name: "index_messages_on_friendship_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -116,8 +109,7 @@ ActiveRecord::Schema.define(version: 2019_09_10_143700) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
-  add_foreign_key "message_containers", "friendships"
-  add_foreign_key "messages", "message_containers"
+  add_foreign_key "messages", "friendships"
   add_foreign_key "messages", "users"
   add_foreign_key "photos", "users"
   add_foreign_key "posts", "users"
