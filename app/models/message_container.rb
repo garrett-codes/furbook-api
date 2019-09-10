@@ -1,0 +1,2 @@
+class MessageContainer < ApplicationRecord
+end
