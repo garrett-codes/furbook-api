@@ -13,7 +13,7 @@ class MessagesController < ApplicationController
 
 	def index
 		messages = Message.all
-		render json: comments
+		render json: messages
 	end
 
 	def show
