@@ -7,7 +7,7 @@ class PostsController < ApplicationController
       render json: post
     else
       # Give the user error messages
-      render json: { errors: @post.errors.full_messages }, status: :not_acceptable
+      render json: { errors: post.errors.full_messages }, status: :not_acceptable
     end
 	end
 
