@@ -1,13 +1,13 @@
 class CommentsController < ApplicationController
 	def create
-		post = Comment.create(comment_params)
+		comment = Comment.create(comment_params)
 		# byebug
-		if post.valid?
+		if comment.valid?
       # Return that post
-      render json: CommentSerializer.new(post)
+      render json: comment
     else
       # Give the user error messages
-      render json: { errors: @post.errors.full_messages }, status: :not_acceptable
+      render json: { errors: comment.errors.full_messages }, status: :not_acceptable
     end
 	end
 
