@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_10_035112) do
+ActiveRecord::Schema.define(version: 2019_09_10_142339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,13 @@ ActiveRecord::Schema.define(version: 2019_09_10_035112) do
     t.index ["user_id", "friend_user_id"], name: "index_friendships_on_user_id_and_friend_user_id", unique: true
   end
 
+  create_table "message_containers", force: :cascade do |t|
+    t.bigint "friendship_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friendship_id"], name: "index_message_containers_on_friendship_id"
+  end
+
   create_table "photos", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -99,6 +106,7 @@ ActiveRecord::Schema.define(version: 2019_09_10_035112) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "message_containers", "friendships"
   add_foreign_key "photos", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "pro_pics", "users"
