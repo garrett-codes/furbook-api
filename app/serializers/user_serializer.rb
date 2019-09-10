@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :password_digest, :email, :first_name, :last_name, :friends, :pending_friend_requests, :bio, :animal, :breed, :birth_date, :lives_in, :from, :family, :favorite_hobbies
+  attributes :id, :username, :password_digest, :email, :first_name, :last_name, :friends, :pending_friend_requests, :bio, :animal, :breed, :birth_date, :lives_in, :from, :family, :favorite_hobbies, :messages_info
   has_many :posts
   has_many :comments, through: :posts
   has_many :pro_pic
@@ -28,14 +28,13 @@ class UserSerializer < ActiveModel::Serializer
   	friendships.map{|friendship| {user: User.find(friendship.user_id), id: friendship.id}}
   end
 
-  # def messages_info
-  #   messages_container = []
-  #   object.friends.each do |friend_info| 
-  #     messages = Friendship.find(friend_info[:id]).messages
-  #     messages_info = {messages: messages , friend: friend_info[:user]}
-  #     messages_container << messages_info
-  #     byebug
-  #   end
-  # end
-  # return messages_container
+  def messages_info
+    messages_container = []
+    object.friends.each do |friend_info| 
+      messages = Friendship.find(friend_info[:id]).messages
+      messages_info = {messages: messages , friend: friend_info[:user]}
+      messages_container << messages_info
+    end
+    messages_container
+  end
 end
