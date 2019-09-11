@@ -22,9 +22,16 @@ class MessagesController < ApplicationController
 	  render json: message
   end
 
+  def update
+  	# byebug
+  	message_id = params[:id]
+	  message = Message.find(message_id)
+	  message.update(message_params)
+  end
+
 	private
 
 	def message_params
-		params.permit(:user_id, :friendship_id, :content)
+		params.permit(:user_id, :friendship_id, :content, :viewed)
 	end
 end
