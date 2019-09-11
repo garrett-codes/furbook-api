@@ -1,9 +1,13 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :password_digest, :email, :first_name, :last_name, :friends, :pending_friend_requests, :bio, :animal, :breed, :birth_date, :lives_in, :from, :family, :favorite_hobbies, :messages_info
+  attributes :id, :username, :password_digest, :email, :first_name, :last_name, :friends, :pending_friend_requests, :bio, :animal, :breed, :birth_date, :lives_in, :from, :family, :favorite_hobbies, :messages_info, :reverse_posts
   has_many :posts
   has_many :comments, through: :posts
   has_many :pro_pic
   has_many :photos
+
+  def reverse_posts
+    object.posts.reverse
+  end
 
   def friends
   	
