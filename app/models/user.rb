@@ -11,6 +11,10 @@ class User < ApplicationRecord
 		foreign_key: :user_id,
 		association_foreign_key: :friend_user_id
 
+  validates :email, uniqueness: true
+  validates :username, uniqueness: true
+  validates :username, :password, :email, presence:
+
 
 		def friends
   	
