@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :password_digest, :email, :first_name, :last_name, :friends, :pending_friend_requests, :messages_info, :reverse_posts, :pro_pic_url
+  attributes :id, :username, :password_digest, :email, :first_name, :last_name, :friends, :pending_friend_requests, :messages_info, :reverse_posts, :pro_pic_url, :bio
   has_many :posts
   has_many :comments, through: :posts
   has_many :pro_pics
@@ -40,7 +40,7 @@ class UserSerializer < ActiveModel::Serializer
     messages_container = []
     object.friends.each do |friend_info| 
       messages = Friendship.find(friend_info[:id]).messages
-      messages_info = {messages: messages.reverse , friend: friend_info[:user], friendship_id: friend_info[:id]}
+      messages_info = {messages: messages , friend: friend_info[:user], friendship_id: friend_info[:id]}
       messages_container << messages_info
     end
     messages_container
