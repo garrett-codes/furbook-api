@@ -21,10 +21,12 @@ skip_before_action :authorized, only: :create
 	  render json: user
   end
 
-	# def show
-	# 	@user = User.find(params[:id])
-	# 	render :show
-	# end
+  def update
+  	byebug
+  	user_id = params[:id]
+	  user = User.find(user_id)
+	  user.update(user_params)
+  end
 
 	def profile
 		render json: current_user
@@ -33,6 +35,6 @@ skip_before_action :authorized, only: :create
 	private 
 
 	def user_params
-		params.permit(:username, :password, :first_name, :last_name, :email)
+		params.permit(:user, :id, :username, :password, :first_name, :last_name, :email, :bio)
 	end
 end
