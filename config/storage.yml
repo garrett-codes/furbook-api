@@ -18,7 +18,7 @@
 google:
   service: GCS
   project: furbook-pic
-  credentials: <%= ENV['GOOGLE_APPLICATION_CREDENTIALS'].as_json %>
+  credentials: <%= Rails.application.credentials.gcs_furbook.to_json %>
   bucket: furbook-bucket
 
 google_dev:
