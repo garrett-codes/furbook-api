@@ -9,7 +9,8 @@ class User < ApplicationRecord
 		class_name: "User",
 		join_table: :friendships,
 		foreign_key: :user_id,
-		association_foreign_key: :friend_user_id
+		association_foreign_key: :friend_user_id, 
+    dependent: :destroy
 
   validates :email, uniqueness: true
   validates :username, uniqueness: true
