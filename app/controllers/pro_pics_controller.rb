@@ -16,6 +16,13 @@ class ProPicsController < ApplicationController
 		end
 	end
 
+	def destroy 
+		pro_pic_id = params[:id]
+	  pro_pic = Photo.find(pro_pic_id)
+	  pro_pic.picture.purge
+	  pro_pic.destroy
+	end
+
 	
 	private 
 
