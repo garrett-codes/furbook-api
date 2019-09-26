@@ -15,6 +15,13 @@ skip_before_action :authorized
 		end
 	end
 
+	def destroy 
+		photo_id = params[:id]
+	  photo = Photo.find(photo_id)
+	  photo.picture.purge
+	  photo.destroy
+	end
+
 	def show
 	  photo_id = params[:id]
 	  photo = Photo.find(photo_id)
